@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maseno Cyber Café — Admission Help Desk</title>
+    <meta
+      name="description"
+      content="Independent help for Maseno University applicants: document printing, HELB application support, and admission guidance in Maseno." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet" />
+    <style>
+      :root {
+        --paper: #f2f4ef;
+        --paper-alt: #eaeee4;
+        --card: #ffffff;
+        --ink: #16241c;
+        --ink-soft: #3a4a3f;
+        --green-deep: #1f4d3a;
+        --green-mid: #3e6b58;
+        --green-glow: #2e5f49;
+        --amber: #e1972c;
+        --amber-dark: #b9721c;
+        --stamp-red: #a23b2e;
+        --line: #d6dacd;
+        --radius-sm: 6px;
+        --radius-md: 12px;
+        --shadow-sm: 0 1px 2px rgba(22, 36, 28, 0.06);
+        --shadow-md: 0 8px 24px rgba(22, 36, 28, 0.08);
+        --shadow-lg: 0 20px 48px rgba(22, 36, 28, 0.14);
+        --ease: cubic-bezier(0.22, 0.9, 0.28, 1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "IBM Plex Sans", sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        margin: 0 0 0.4em 0;
+        letter-spacing: -0.015em;
+      }
+      .mono {
+        font-family: "IBM Plex Mono", monospace;
+        letter-spacing: 0.02em;
+      }
+      a {
+        color: inherit;
+      }
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 10px 16px;
+        z-index: 200;
+        border-radius: 0 0 6px 0;
+      }
+      .skip-link:focus {
+        left: 0;
+      }
+
+      /* ---------- Nav ---------- */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(242, 244, 239, 0.85);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+        transition:
+          box-shadow 0.3s var(--ease),
+          padding 0.3s var(--ease);
+      }
+      .nav.scrolled {
+        box-shadow: var(--shadow-sm);
+      }
+      .nav-inner {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .nav-brand .mark {
+        width: 36px;
+        height: 36px;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        flex-shrink: 0;
+        background: var(--card);
+      }
+      .nav-brand span {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--green-deep);
+        font-weight: 500;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-size: 0.92rem;
+        font-weight: 500;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--ink-soft);
+        position: relative;
+        padding: 4px 0;
+        transition: color 0.2s;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0;
+        background: var(--amber);
+        transition: width 0.25s var(--ease);
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--green-deep);
+        color: var(--paper) !important;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 10px 16px;
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s var(--ease);
+        white-space: nowrap;
+      }
+      .nav-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: 1.5px solid var(--ink);
+        border-radius: 6px;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .nav-toggle span,
+      .nav-toggle span::before,
+      .nav-toggle span::after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: var(--ink);
+        position: relative;
+        transition:
+          transform 0.25s var(--ease),
+          opacity 0.2s;
+      }
+      .nav-toggle span::before {
+        position: absolute;
+        top: -6px;
+      }
+      .nav-toggle span::after {
+        position: absolute;
+        top: 6px;
+      }
+      .nav-toggle[aria-expanded="true"] span {
+        background: transparent;
+      }
+      .nav-toggle[aria-expanded="true"] span::before {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .nav-toggle[aria-expanded="true"] span::after {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      /* ---------- Disclosure ---------- */
+      .disclosure-bar {
+        background: var(--green-deep);
+        color: var(--paper);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.03em;
+        padding: 9px 24px;
+        text-align: center;
+      }
+      .disclosure-bar strong {
+        color: var(--amber);
+      }
+
+      /* ---------- Hero ---------- */
+      header.hero {
+        padding: 72px 0 60px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-grain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.5;
+        background-image: radial-gradient(var(--line) 1px, transparent 1px);
+        background-size: 22px 22px;
+        mask-image: linear-gradient(to bottom, black, transparent 85%);
+      }
+      .hero-inner {
+        position: relative;
+      }
+      .stamp {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 2px solid var(--stamp-red);
+        color: var(--stamp-red);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 7px 14px;
+        border-radius: 99px;
+        background: rgba(162, 59, 46, 0.05);
+      }
+      .stamp .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--stamp-red);
+      }
+
+      .hero-title {
+        font-size: clamp(2.3rem, 5.4vw, 3.7rem);
+        margin-top: 26px;
+        max-width: 16ch;
+        line-height: 1.08;
+      }
+      .hero-title em {
+        font-style: italic;
+        color: var(--green-deep);
+      }
+      .hero-sub {
+        max-width: 54ch;
+        font-size: 1.12rem;
+        color: var(--ink-soft);
+        margin-top: 14px;
+      }
+      .hero-actions {
+        margin-top: 32px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 15px 24px;
+        border-radius: var(--radius-sm);
+        border: 2px solid var(--ink);
+        transition:
+          transform 0.2s var(--ease),
+          box-shadow 0.2s var(--ease),
+          background 0.2s;
+      }
+      .btn-primary {
+        background: var(--green-deep);
+        border-color: var(--green-deep);
+        color: var(--paper);
+      }
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--ink);
+      }
+      .btn-ghost:hover {
+        background: var(--paper-alt);
+        transform: translateY(-2px);
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.2s var(--ease);
+      }
+      .btn-primary:hover svg {
+        transform: translate(3px, -2px);
+      }
+
+      .hero-stats {
+        margin-top: 52px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+      }
+      .hero-stat {
+        background: var(--card);
+        padding: 20px 22px;
+      }
+      .hero-stat .num {
+        font-family: "Fraunces", serif;
+        font-size: 1.7rem;
+        color: var(--green-deep);
+        display: block;
+      }
+      .hero-stat .label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.74rem;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* ---------- Reveal on scroll ---------- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .stagger .reveal:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .stagger .reveal:nth-child(2) {
+        transition-delay: 0.14s;
+      }
+      .stagger .reveal:nth-child(3) {
+        transition-delay: 0.23s;
+      }
+      .stagger .reveal:nth-child(4) {
+        transition-delay: 0.32s;
+      }
+
+      /* ---------- Sections ---------- */
+      section {
+        padding: 88px 0;
+      }
+      .section-head {
+        max-width: 60ch;
+        margin-bottom: 36px;
+      }
+      .section-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green-mid);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .section-label::before {
+        content: "";
+        width: 22px;
+        height: 1.5px;
+        background: var(--amber);
+      }
+      .section-head h2 {
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+      }
+      .section-head p {
+        color: var(--ink-soft);
+        font-size: 1.02rem;
+        margin-top: 8px;
+      }
+
+      /* ---------- Service cards ---------- */
+      .tickets {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .ticket {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 28px 26px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition:
+          transform 0.3s var(--ease),
+          box-shadow 0.3s var(--ease),
+          border-color 0.3s;
+      }
+      .ticket:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--green-mid);
+      }
+      .ticket-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .ticket-code {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--amber-dark);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        background: #fcefd9;
+        padding: 3px 9px;
+        border-radius: 99px;
+      }
+      .ticket-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        background: var(--paper-alt);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--green-deep);
+        flex-shrink: 0;
+      }
+      .ticket h3 {
+        font-size: 1.22rem;
+      }
+      .ticket p {
+        color: var(--ink-soft);
+        font-size: 0.96rem;
+        margin: 0;
+      }
+      .ticket .price-note {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px dashed var(--line);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.78rem;
+        color: var(--green-mid);
+        font-weight: 500;
+      }
+
+      /* ---------- Process ---------- */
+      .steps {
+        margin-top: 8px;
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 22px;
+      }
+      .steps::before {
+        content: "";
+        position: absolute;
+        top: 24px;
+        left: 6%;
+        right: 6%;
+        height: 1.5px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--line) 0 8px,
+          transparent 8px 14px
+        );
+      }
+      .step {
+        position: relative;
+      }
+      .step .num {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--card);
+        border: 2px solid var(--ink);
+        font-family: "Fraunces", serif;
+        font-size: 1.35rem;
+        color: var(--green-deep);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 2;
+        transition:
+          background 0.3s,
+          color 0.3s,
+          border-color 0.3s;
+      }
+      .step:hover .num {
+        background: var(--green-deep);
+        color: var(--paper);
+        border-color: var(--green-deep);
+      }
+      .step h4 {
+        font-family: "IBM Plex Sans", sans-serif;
+        font-weight: 600;
+        font-size: 1.02rem;
+        margin: 0 0 6px;
+      }
+      .step p {
+        font-size: 0.92rem;
+        color: var(--ink-soft);
+        margin: 0;
+      }
+
+      /* ---------- Trust panel ---------- */
+      .trust {
+        background: linear-gradient(
+          155deg,
+          var(--green-deep),
+          var(--green-glow)
+        );
+        color: var(--paper);
+        border-radius: var(--radius-md);
+        padding: 48px 40px;
+        box-shadow: var(--shadow-lg);
+      }
+      .trust .section-label {
+        color: var(--amber);
+      }
+      .trust .section-label::before {
+        background: var(--amber);
+      }
+      .trust h2 {
+        color: var(--paper);
+      }
+      .trust > .wrap-inner p {
+        color: #dce6dd;
+        max-width: 62ch;
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        margin-top: 30px;
+      }
+      .trust-item {
+        border-left: 2px solid var(--amber);
+        padding-left: 16px;
+        transition: transform 0.25s var(--ease);
+      }
+      .trust-item:hover {
+        transform: translateX(4px);
+      }
+      .trust-item .label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.74rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--amber);
+        display: block;
+        margin-bottom: 5px;
+      }
+      .trust-item p {
+        margin: 0;
+        font-size: 0.94rem;
+        color: #dce6dd;
+      }
+
+      /* ---------- Group callout ---------- */
+      .group-callout {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 28px;
+        flex-wrap: wrap;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 36px 38px;
+        background: var(--card);
+        box-shadow: var(--shadow-sm);
+        transition: box-shadow 0.3s var(--ease);
+      }
+      .group-callout:hover {
+        box-shadow: var(--shadow-md);
+      }
+      .group-callout h3 {
+        margin-bottom: 6px;
+      }
+      .group-callout p {
+        margin: 0;
+        color: var(--ink-soft);
+        max-width: 46ch;
+      }
+
+      /* ---------- FAQ / accordion ---------- */
+      .faq-item {
+        border-bottom: 1px solid var(--line);
+      }
+      .faq-q {
+        width: 100%;
+        text-align: left;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 20px 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .faq-q .plus {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        border: 1.5px solid var(--ink);
+        border-radius: 50%;
+        position: relative;
+        transition: transform 0.3s var(--ease);
+      }
+      .faq-q .plus::before,
+      .faq-q .plus::after {
+        content: "";
+        position: absolute;
+        background: var(--ink);
+        top: 50%;
+        left: 50%;
+      }
+      .faq-q .plus::before {
+        width: 10px;
+        height: 1.5px;
+        transform: translate(-50%, -50%);
+      }
+      .faq-q .plus::after {
+        width: 1.5px;
+        height: 10px;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.2s;
+      }
+      .faq-item[open] .plus {
+        transform: rotate(180deg);
+      }
+      .faq-item[open] .plus::after {
+        opacity: 0;
+      }
+      .faq-a {
+        padding: 0 4px 20px;
+        color: var(--ink-soft);
+        font-size: 0.96rem;
+        max-width: 60ch;
+      }
+      .faq-item summary {
+        list-style: none;
+      }
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      /* ---------- Footer ---------- */
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 52px 0 40px;
+        font-size: 0.9rem;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr 1fr;
+        gap: 36px;
+      }
+      footer h4 {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--green-mid);
+        margin: 0 0 12px;
+      }
+      footer .disclaimer-block {
+        background: var(--paper-alt);
+        border-left: 3px solid var(--stamp-red);
+        padding: 16px 18px;
+        font-size: 0.86rem;
+        color: var(--ink-soft);
+        border-radius: 0 8px 8px 0;
+      }
+      footer address {
+        font-style: normal;
+        color: var(--ink-soft);
+        line-height: 1.8;
+      }
+      footer address a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      footer address a:hover {
+        color: var(--green-deep);
+        border-color: var(--green-deep);
+      }
+      .fine-print {
+        margin-top: 36px;
+        padding-top: 22px;
+        border-top: 1px solid var(--line);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        color: #6b7a6f;
+      }
+
+      /* ---------- Sticky mobile CTA ---------- */
+      .mobile-cta {
+        display: none;
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        z-index: 90;
+        background: var(--green-deep);
+        color: var(--paper);
+        text-decoration: none;
+        padding: 15px;
+        border-radius: var(--radius-sm);
+        text-align: center;
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 500;
+        font-size: 0.92rem;
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* ---------- Focus ---------- */
+      a:focus-visible,
+      button:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid var(--amber);
+        outline-offset: 2px;
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 860px) {
+        .nav-links {
+          position: fixed;
+          top: 64px;
+          left: 0;
+          right: 0;
+          background: var(--paper);
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+          padding: 8px 24px 20px;
+          border-bottom: 1px solid var(--line);
+          box-shadow: var(--shadow-md);
+          transform: translateY(-8px);
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.25s var(--ease);
+        }
+        .nav-links.open {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .nav-links a {
+          padding: 12px 0;
+          width: 100%;
+          border-bottom: 1px solid var(--line);
+        }
+        .nav-links .nav-cta {
+          margin-top: 12px;
+        }
+        .nav-toggle {
+          display: flex;
+        }
+        .hero-stats {
+          grid-template-columns: 1fr;
+        }
+        .tickets {
+          grid-template-columns: 1fr;
+        }
+        .steps {
+          grid-template-columns: 1fr 1fr;
+          row-gap: 34px;
+        }
+        .steps::before {
+          display: none;
+        }
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        section {
+          padding: 64px 0;
+        }
+        header.hero {
+          padding: 44px 0 48px;
+        }
+        .mobile-cta {
+          display: block;
+        }
+        body {
+          padding-bottom: 78px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        * {
+          animation: none !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <div class="disclosure-bar">
+      <span class="mono"
+        >INDEPENDENT SERVICE —
+        <strong>not an official Maseno University website</strong>. We are a
+        private cyber café assisting applicants.</span
+      >
+    </div>
+
+    <nav class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="#main" class="nav-brand">
+          <div class="mark">MC</div>
+          <span>Maseno Cyber Café</span>
+        </a>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="navLinks"
+          aria-label="Toggle menu">
+          <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+          <a href="#services">Services</a>
+          <a href="#process">How it works</a>
+          <a href="#about">About us</a>
+          <a href="#faq">FAQ</a>
+          <a
+            class="nav-cta"
+            href="https://wa.me/254707995729"
+            target="_blank"
+            rel="noopener"
+            >WhatsApp us →</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main id="main">
+      <header class="hero">
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="wrap hero-inner">
+          <span class="stamp"
+            ><span class="dot"></span> Independent applicant support</span
+          >
+
+          <h1 class="hero-title">
+            Get your admission paperwork sorted <em>in one visit.</em>
+          </h1>
+          <p class="hero-sub">
+            We help Maseno University applicants print joining documents, apply
+            for HELB, understand what admission requires, and connect with other
+            incoming students — all from our café in Maseno.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="btn btn-primary"
+              href="https://wa.me/254707995729"
+              target="_blank"
+              rel="noopener">
+              Chat on WhatsApp
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path d="M7 17 17 7M17 7H8M17 7v9" />
+              </svg>
+            </a>
+            <a class="btn btn-ghost" href="#services">See what we help with</a>
+          </div>
+
+          <div class="hero-stats reveal-group stagger">
+            <div class="hero-stat reveal">
+              <span class="num">4</span
+              ><span class="label">Services in one place</span>
+            </div>
+            <div class="hero-stat reveal">
+              <span class="num">Help</span
+              ><span class="label">HELB portal application</span>
+            </div>
+            <div class="hero-stat reveal">
+              <span class="num">Both</span
+              ><span class="label">Siriba &amp; Main campus</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section id="services">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div class="section-label">01 — Services</div>
+            <h2>Four ways we can help</h2>
+            <p>
+              Straightforward, paid-for-your-time services — no packages, no
+              hidden steps.
+            </p>
+          </div>
+
+          <div class="tickets stagger">
+            <div class="ticket reveal">
+              <div class="ticket-top">
+                <div class="ticket-icon" aria-hidden="true">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8">
+                    <path
+                      d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z" />
+                  </svg>
+                </div>
+                <span class="ticket-code mono">SRV / PRINT</span>
+              </div>
+              <h3>Document printing</h3>
+              <p>
+                Print and photocopy your admission letter, joining instructions,
+                ID, KCSE certificate, and any other paperwork the university
+                asks for.
+              </p>
+              <div class="price-note">Contact us for help</div>
+            </div>
+
+            <div class="ticket reveal">
+              <div class="ticket-top">
+                <div class="ticket-icon" aria-hidden="true">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8">
+                    <path d="M12 2 3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5Z" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                </div>
+                <span class="ticket-code mono">SRV / HELB</span>
+              </div>
+              <h3>HELB application help</h3>
+              <p>
+                We walk you through applying for your HELB loan on the official
+                HELB portal — step by step, on our computers, at your pace.
+              </p>
+              <div class="price-note">Contact us for help</div>
+            </div>
+
+            <div class="ticket reveal">
+              <div class="ticket-top">
+                <div class="ticket-icon" aria-hidden="true">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8">
+                    <path d="M12 17h.01M12 13a2 2 0 1 0-2-2" />
+                    <circle cx="12" cy="12" r="10" />
+                  </svg>
+                </div>
+                <span class="ticket-code mono">SRV / GUIDE</span>
+              </div>
+              <h3>Application guidance</h3>
+              <p>
+                Not sure what a document means or what step comes next? We
+                explain the admission process in plain language, one on one.
+              </p>
+              <div class="price-note">Contact us for help</div>
+            </div>
+
+            <div class="ticket reveal">
+              <div class="ticket-top">
+                <div class="ticket-icon" aria-hidden="true">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path
+                      d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <span class="ticket-code mono">SRV / GROUP</span>
+              </div>
+              <h3>Student WhatsApp group</h3>
+              <p>
+                Join other incoming Maseno students to ask questions, share
+                updates, and figure things out together before you arrive on
+                campus.
+              </p>
+              <div class="price-note">Free to join</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div class="section-label">02 — Process</div>
+            <h2>How a visit works</h2>
+            <p>Four simple steps, usually done in a single sitting.</p>
+          </div>
+
+          <div class="steps stagger">
+            <div class="step reveal">
+              <span class="num">1</span>
+              <h4>Message us</h4>
+              <p>
+                Send us a WhatsApp message telling us what you need help with.
+              </p>
+            </div>
+            <div class="step reveal">
+              <span class="num">2</span>
+              <h4>Bring your details</h4>
+              <p>
+                Come with your admission letter, ID, and any documents you
+                already have.
+              </p>
+            </div>
+            <div class="step reveal">
+              <span class="num">3</span>
+              <h4>We assist you</h4>
+              <p>
+                We print, fill, or explain — whatever the task needs — while
+                you're with us.
+              </p>
+            </div>
+            <div class="step reveal">
+              <span class="num">4</span>
+              <h4>Leave sorted</h4>
+              <p>You walk out with printed documents and a clear next step.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="wrap">
+          <div class="trust reveal">
+            <div class="wrap-inner">
+              <div class="section-label">03 — Who we are</div>
+              <h2>Straight talk, no confusion</h2>
+              <p>
+                We are a local cyber café in Maseno — not Maseno University, and
+                not affiliated with it in any way. Everything official (your
+                admission status, fee structure, and official joining
+                instructions) comes only from the university itself. We simply
+                help you prepare, print, and apply.
+              </p>
+
+              <div class="trust-grid">
+                <div class="trust-item">
+                  <span class="label mono">HELB is free</span>
+                  <p>
+                    Applying for HELB costs nothing on the official HELB portal.
+                    We only charge for our time helping you use it.
+                  </p>
+                </div>
+                <div class="trust-item">
+                  <span class="label mono">We don't hold your money</span>
+                  <p>
+                    We never ask you to send fee payments through us. All
+                    university fees go directly to Maseno University's official
+                    accounts.
+                  </p>
+                </div>
+                <div class="trust-item">
+                  <span class="label mono">Ask us anything</span>
+                  <p>
+                    If you're unsure whether something is official, ask us —
+                    we'd rather tell you than have you guess.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="group-callout reveal">
+            <div>
+              <h3>Join the incoming students' group</h3>
+              <p>
+                Connect with other freshers heading to Maseno this intake — ask
+                questions, share what you've learned, and arrive knowing more
+                people.
+              </p>
+            </div>
+            <a
+              class="btn btn-primary"
+              href="https://chat.whatsapp.com/KXOZ7jEtkY5BsgaS9iQYxY?s=cl&amp;p=a&amp;ilr=4"
+              target="_blank"
+              rel="noopener">
+              Join on WhatsApp
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <path d="M7 17 17 7M17 7H8M17 7v9" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div class="section-label">04 — FAQ</div>
+            <h2>Common questions</h2>
+          </div>
+
+          <div class="faq reveal">
+            <details class="faq-item" open>
+              <summary class="faq-q">
+                Is this the official Maseno University site?<span
+                  class="plus"></span>
+              </summary>
+              <div class="faq-a">
+                No. We're an independent, privately run cyber café in Maseno.
+                For anything official — admission status, fee balances,
+                deadlines — always confirm directly with the university.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-q">
+                Do I pay HELB application fees to you?<span class="plus"></span>
+              </summary>
+              <div class="faq-a">
+                No. Applying for HELB is free on the official HELB portal. We
+                only charge for the time we spend helping you fill it in — never
+                for the application itself.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-q">
+                Can I pay my university fees through you?<span
+                  class="plus"></span>
+              </summary>
+              <div class="faq-a">
+                No. We never handle fee payments. All university fees should go
+                directly to Maseno University's official accounts.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-q">
+                What should I bring with me?<span class="plus"></span>
+              </summary>
+              <div class="faq-a">
+                Your admission letter, national ID, and any documents you
+                already have printed or saved on your phone/email.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <h4>Disclosure</h4>
+            <div class="disclaimer-block">
+              Maseno Cyber Café is an independent, privately run business. We
+              are <strong>not</strong> Maseno University Officials. We provide
+              printing and application-support services.
+            </div>
+          </div>
+          <div>
+            <h4>Visit us</h4>
+            <address>
+              Near Siriba Campus<br />
+              Maseno, Kenya<br />
+              Open: 8:00am – 6:00pm
+            </address>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <address>
+              WhatsApp us directly:<br />
+              <a
+                href="https://wa.me/254707995729"
+                target="_blank"
+                rel="noopener"
+                >wa.me/254707995729</a
+              >
+            </address>
+          </div>
+        </div>
+
+        <div class="fine-print">
+          © 2026 Maseno Cyber Café. Independent service provider.
+        </div>
+      </div>
+    </footer>
+
+    <a
+      class="mobile-cta"
+      href="https://wa.me/254707995729"
+      target="_blank"
+      rel="noopener"
+      >Chat on WhatsApp →</a
+    >
+
+    <script>
+      // Sticky nav shadow on scroll
+      const nav = document.getElementById("nav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          nav.classList.toggle("scrolled", window.scrollY > 8);
+        },
+        { passive: true },
+      );
+
+      // Mobile nav toggle
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+      navToggle.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", open);
+      });
+      navLinks.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          navToggle.setAttribute("aria-expanded", "false");
+        }),
+      );
+
+      // Scroll reveal
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const revealEls = document.querySelectorAll(".reveal");
+      if (prefersReduced) {
+        revealEls.forEach((el) => el.classList.add("in"));
+      } else if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+        );
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add("in"));
+      }
+    </script>
+  </body>
+</html>
