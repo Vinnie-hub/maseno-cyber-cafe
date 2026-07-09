@@ -1,4 +1,3 @@
-
 // === WhatsApp Configuration ===
       const WA_NUMBER = "254107024260";
       const WA_CHAT_MSG =
